@@ -39,6 +39,8 @@ export const siteConfig = {
   name: "Jagdeep Kaur",
   phone: "+91 90976 99097",
   phoneHref: "tel:+919097699097",
+  whatsapp: "+91 90976 99097",
+  whatsappHref: "https://wa.me/919097699097",
   email: "advocatekaurjagdeep@gmail.com",
   address: "Office No. 11, Navrajshree CHS, Opp. McDonald's, Mira Road (East), Thane – 401107",
   mapsHref: "https://www.google.com/maps/search/?api=1&query=Navrajshree+CHS+Mira+Road+East+Thane+401107",

@@ -7,5 +7,9 @@ input, select, textarea, button { font-family: inherit; }
 .jk-btn-dark:hover { background: #16332c; }
 .jk-btn-outline:hover { border-color: #b08d3f; background: rgba(176,141,63,.07); }
 .jk-btn-gold:hover { background: #d8b866; }
+.jk-btn-whatsapp:hover { background: #20ba5a; }
 .jk-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(20,40,35,.09); border-color: #dcc98f; }
 .jk-input:focus { border-color: #b08d3f; outline: none; }
+.jk-photo-frame { overflow: hidden; border-radius: 3px; border: 1px solid rgba(176, 141, 63, 0.18); box-shadow: 0 24px 54px rgba(26, 42, 35, 0.12); background: #ede7d8; }
+.jk-photo-frame img { transition: transform .6s ease; }
+.jk-photo-frame:hover img { transform: scale(1.03); }
