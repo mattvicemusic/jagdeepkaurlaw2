@@ -13,3 +13,12 @@ input, select, textarea, button { font-family: inherit; }
 .jk-photo-frame { overflow: hidden; border-radius: 3px; border: 1px solid rgba(176, 141, 63, 0.18); box-shadow: 0 24px 54px rgba(26, 42, 35, 0.12); background: #ede7d8; }
 .jk-photo-frame img { transition: transform .6s ease; }
 .jk-photo-frame:hover img { transform: scale(1.03); }
+
+/* ---- Mobile layout ---- */
+.jk-m-menu { animation: jk-fade .22s ease both; }
+.jk-m-menu-panel { animation: jk-slide .28s cubic-bezier(.22,.61,.36,1) both; }
+@keyframes jk-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes jk-slide { from { transform: translateY(-14px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.jk-m-tap { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.jk-m-tap:active { transform: scale(.98); }
+body.jk-m-locked { overflow: hidden; }

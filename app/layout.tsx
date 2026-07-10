@@ -1,9 +1,16 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Jagdeep Kaur — Advocate | Matrimonial & Family Law",
   description: "Advocate Jagdeep Kaur practises matrimonial and family law before the Bombay High Court and the Family Courts of Mumbai & Thane.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#1f3a34",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
