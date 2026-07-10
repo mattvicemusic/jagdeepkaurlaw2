@@ -37,6 +37,7 @@ export const faqData = [
 
 export const siteConfig = {
   name: "Jagdeep Kaur",
+  portalUrl: "https://portal.jagdeepkaur.legal",
   phone: "+91 90976 99097",
   phoneHref: "tel:+919097699097",
   whatsapp: "+91 90976 99097",

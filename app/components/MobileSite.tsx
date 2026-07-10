@@ -109,6 +109,7 @@ export default function MobileSite() {
             <div style={{ display: "grid", gap: 10, marginTop: 20 }}>
               <a href={siteConfig.phoneHref} onClick={() => setMenuOpen(false)} className="jk-btn-gold jk-m-tap" style={{ padding: 16, textAlign: "center", background: "#c9a75a", color: "#16332c", borderRadius: 6, font: `600 12px ${sans}`, letterSpacing: 1.6, textTransform: "uppercase" }}>Call {siteConfig.phone}</a>
               <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="jk-btn-whatsapp jk-m-tap" style={{ padding: 16, textAlign: "center", background: "#25d366", color: "#103323", borderRadius: 6, font: `600 12px ${sans}`, letterSpacing: 1.6, textTransform: "uppercase" }}>WhatsApp</a>
+              <a href={siteConfig.portalUrl} onClick={() => setMenuOpen(false)} className="jk-btn-dark jk-m-tap" style={{ padding: 16, textAlign: "center", background: GREEN, color: "#f4efe4", borderRadius: 6, font: `500 12px ${sans}`, letterSpacing: 1.6, textTransform: "uppercase" }}>Client Portal Login</a>
             </div>
           </div>
         </div>
@@ -296,7 +297,7 @@ export default function MobileSite() {
         <footer style={{ background: "#1b2f2a", color: "#dce4de", padding: "30px 20px" }}>
           <div style={{ font: `600 22px ${serif}`, color: "#f4efe4", marginBottom: 8 }}>Jagdeep Kaur</div>
           <div style={{ font: `400 12px/1.7 ${sans}`, color: "#aebbb4", marginBottom: 18 }}>Advocate · Matrimonial and family law · Bombay High Court and Family Courts at Mumbai &amp; Thane.</div>
-          <a href="#top" style={{ font: `500 11px ${sans}`, letterSpacing: 1.8, textTransform: "uppercase", color: "#dce4de" }}>Back to top ↑</a>
+          <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}><a href={siteConfig.portalUrl} style={{ font: `500 11px ${sans}`, letterSpacing: 1.8, textTransform: "uppercase", color: "#d8b866" }}>Client Portal</a><a href="#top" style={{ font: `500 11px ${sans}`, letterSpacing: 1.8, textTransform: "uppercase", color: "#dce4de" }}>Back to top ↑</a></div>
         </footer>
       </main>
 
