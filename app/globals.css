@@ -22,3 +22,8 @@ input, select, textarea, button { font-family: inherit; }
 .jk-m-tap { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 .jk-m-tap:active { transform: scale(.98); }
 body.jk-m-locked { overflow: hidden; }
+
+/* Even 4-up grid (Approach / Process) — no orphaned last card */
+.jk-grid-4 { display: grid; gap: 30px; grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 920px) { .jk-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 30px 28px; } }
+@media (max-width: 540px) { .jk-grid-4 { grid-template-columns: 1fr; } }
