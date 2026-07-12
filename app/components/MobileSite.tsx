@@ -287,7 +287,7 @@ export default function MobileSite() {
 
           <div style={{ marginTop: 24 }}>
             <div className="jk-photo-frame" style={{ position: "relative", aspectRatio: "4/5", maxWidth: 340 }}>
-              <Image src="/images/chambers.png" alt="Private consultation chambers interior." fill sizes="92vw" style={{ objectFit: "cover" }} />
+              <Image src="/images/chambers.jpg" alt="Private consultation chambers interior." fill sizes="92vw" style={{ objectFit: "cover" }} />
             </div>
             <p style={{ font: `400 13px/1.7 ${sans}`, color: "#66716b", margin: "12px 0 0" }}>A calm, private setting for consultations by appointment.</p>
           </div>
