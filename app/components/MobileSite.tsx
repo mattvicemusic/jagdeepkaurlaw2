@@ -33,7 +33,7 @@ function Eyebrow({ text, center = false }: { text: string; center?: boolean }) {
 
 export default function MobileSite() {
   const { showDisclaimer, accept } = useDisclaimer();
-  const { form, field, submit, sent } = useContactForm();
+  const { form, field, submit, sent, sending, error, company, setCompany } = useContactForm();
   const [openFaq, setOpenFaq] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -213,11 +213,11 @@ export default function MobileSite() {
             const isOpen = i === openFaq;
             return (
               <div key={f.q} style={{ borderBottom: "1px solid #e2dcc4" }}>
-                <button onClick={() => setOpenFaq(isOpen ? -1 : i)} className="jk-m-tap" style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14, padding: "20px 0", background: "none", border: "none", textAlign: "left", cursor: "pointer" }}>
+                <button onClick={() => setOpenFaq(isOpen ? -1 : i)} aria-expanded={isOpen} aria-controls={`faq-panel-${i}`} className="jk-m-tap" style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14, padding: "20px 0", background: "none", border: "none", textAlign: "left", cursor: "pointer" }}>
                   <span style={{ font: `600 16.5px/1.4 ${serif}`, color: GREEN }}>{f.q}</span>
-                  <span style={{ flexShrink: 0, display: "inline-block", transform: isOpen ? "rotate(45deg)" : "none", transition: "transform .2s ease", color: GOLD, fontSize: 24 }}>+</span>
+                  <span aria-hidden="true" style={{ flexShrink: 0, display: "inline-block", transform: isOpen ? "rotate(45deg)" : "none", transition: "transform .2s ease", color: GOLD, fontSize: 24 }}>+</span>
                 </button>
-                {isOpen && <p style={{ font: `400 14.5px/1.72 ${sans}`, color: "#54605a", margin: "0 0 22px" }}>{f.a}</p>}
+                {isOpen && <p id={`faq-panel-${i}`} role="region" style={{ font: `400 14.5px/1.72 ${sans}`, color: "#54605a", margin: "0 0 22px" }}>{f.a}</p>}
               </div>
             );
           })}
@@ -244,23 +244,25 @@ export default function MobileSite() {
           {sent ? (
             <div style={{ padding: 28, background: "#f5f1e8", border: "1px solid #e6ddc0", borderRadius: 8, textAlign: "center", marginBottom: 28 }}>
               <h3 style={{ font: `600 22px ${serif}`, color: GREEN, margin: "0 0 10px" }}>Thank you</h3>
-              <p style={{ font: `400 14px/1.7 ${sans}`, color: "#54605a", margin: 0 }}>Your email client should now be open with your message ready to send to {siteConfig.email}.</p>
+              <p style={{ font: `400 14px/1.7 ${sans}`, color: "#54605a", margin: 0 }}>Your enquiry has been sent. I will get back to you as soon as I can. For anything urgent, please call or message on WhatsApp.</p>
             </div>
           ) : (
             <form onSubmit={submit} style={{ display: "grid", gap: 14, padding: 20, background: "#f8f6ee", border: "1px solid #ece5d0", borderRadius: 8, marginBottom: 28 }}>
-              <input required placeholder="Full name" value={form.name} onChange={field("name")} style={inputStyle} />
-              <input required type="tel" placeholder="Phone" value={form.phone} onChange={field("phone")} style={inputStyle} />
-              <input type="email" placeholder="Email" value={form.email} onChange={field("email")} style={inputStyle} />
-              <select value={form.matter} onChange={field("matter")} style={inputStyle}>
+              <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" value={company} onChange={(e) => setCompany(e.target.value)} style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }} />
+              <input required aria-label="Full name" placeholder="Full name" value={form.name} onChange={field("name")} style={inputStyle} />
+              <input required type="tel" aria-label="Phone" placeholder="Phone" value={form.phone} onChange={field("phone")} style={inputStyle} />
+              <input type="email" aria-label="Email" placeholder="Email" value={form.email} onChange={field("email")} style={inputStyle} />
+              <select aria-label="Nature of matter" value={form.matter} onChange={field("matter")} style={inputStyle}>
                 <option>General enquiry</option>
                 <option>Divorce</option>
                 <option>Maintenance &amp; Alimony</option>
                 <option>Child Custody</option>
                 <option>Domestic Violence</option>
               </select>
-              <textarea rows={4} placeholder="Message" value={form.message} onChange={field("message")} style={{ ...inputStyle, resize: "vertical" }} />
-              <button type="submit" className="jk-btn-dark jk-m-tap" style={{ padding: 17, background: GREEN, color: "#f4efe4", border: "none", borderRadius: 6, font: `500 12px ${sans}`, letterSpacing: 2, textTransform: "uppercase", cursor: "pointer" }}>Send request</button>
-              <p style={{ font: `400 12px/1.6 ${sans}`, color: "#66716b", margin: 0 }}>This form opens your email client and addresses the message to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+              <textarea rows={4} aria-label="Message" placeholder="Message" value={form.message} onChange={field("message")} style={{ ...inputStyle, resize: "vertical" }} />
+              <button type="submit" disabled={sending} className="jk-btn-dark jk-m-tap" style={{ padding: 17, background: GREEN, color: "#f4efe4", border: "none", borderRadius: 6, font: `500 12px ${sans}`, letterSpacing: 2, textTransform: "uppercase", cursor: sending ? "wait" : "pointer", opacity: sending ? 0.7 : 1 }}>{sending ? "Sending…" : "Send request"}</button>
+              {error && <p role="alert" style={{ font: `400 13px/1.6 ${sans}`, color: "#a3402f", margin: 0 }}>{error}</p>}
+              <p style={{ font: `400 12px/1.6 ${sans}`, color: "#66716b", margin: 0 }}>Your enquiry is sent privately to {siteConfig.email}. I will reply as soon as I can.</p>
             </form>
           )}
 

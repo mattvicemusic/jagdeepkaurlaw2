@@ -81,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
+        <a href="#top" className="jk-skip">Skip to content</a>
         {children}
         <script
           type="application/ld+json"

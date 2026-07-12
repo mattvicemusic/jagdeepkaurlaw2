@@ -23,6 +23,32 @@ input, select, textarea, button { font-family: inherit; }
 .jk-m-tap:active { transform: scale(.98); }
 body.jk-m-locked { overflow: hidden; }
 
+/* Visible keyboard focus for interactive elements */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #b08d3f;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link — hidden until focused */
+.jk-skip {
+  position: absolute; left: 12px; top: -48px; z-index: 2000;
+  padding: 10px 16px; background: #1f3a34; color: #f4efe4;
+  font: 500 12px var(--font-sans), sans-serif; letter-spacing: 1.4px; text-transform: uppercase;
+  border-radius: 4px; transition: top .2s ease;
+}
+.jk-skip:focus { top: 12px; color: #f4efe4; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
 /* Even 4-up grid (Approach / Process) — no orphaned last card */
 .jk-grid-4 { display: grid; gap: 30px; grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 920px) { .jk-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 30px 28px; } }

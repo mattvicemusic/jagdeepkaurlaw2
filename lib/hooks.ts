@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { siteConfig } from "@/lib/data";
 
 const DISCLAIMER_KEY = "jk_disclaimer_ok";
 
@@ -20,20 +19,33 @@ type ContactForm = { name: string; phone: string; email: string; matter: string;
 
 export function useContactForm() {
   const [form, setForm] = useState<ContactForm>({ name: "", phone: "", email: "", matter: "General enquiry", message: "" });
+  const [company, setCompany] = useState(""); // honeypot — must stay empty
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const field = (k: keyof ContactForm) => (e: { target: { value: string } }) =>
     setForm((s) => ({ ...s, [k]: e.target.value }));
 
-  const submit = (e: { preventDefault: () => void }) => {
+  const submit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const subj = encodeURIComponent("Consultation request — " + (form.matter || "Enquiry"));
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nNature of matter: ${form.matter}\n\n${form.message}`,
-    );
-    window.location.href = `mailto:${siteConfig.email}?subject=${subj}&body=${body}`;
-    setSent(true);
+    if (sending) return;
+    setError(null);
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, company }),
+      });
+      if (!res.ok) throw new Error();
+      setSent(true);
+    } catch {
+      setError("Something went wrong sending your message. Please try again, or reach out by phone, WhatsApp or email.");
+    } finally {
+      setSending(false);
+    }
   };
 
-  return { form, field, submit, sent };
+  return { form, field, submit, sent, sending, error, company, setCompany };
 }
