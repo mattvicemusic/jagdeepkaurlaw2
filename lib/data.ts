@@ -6,9 +6,8 @@ export const practiceAreas = [
   { no: "05", title: "Judicial Separation & Annulment", desc: "Judicial separation, and nullity or annulment where a marriage is void or voidable in law." },
   { no: "06", title: "Section 498A & Dowry Matters", desc: "Advice and representation in cruelty and dowry-related proceedings, for complainants and for the accused." },
   { no: "07", title: "Restitution of Conjugal Rights", desc: "Petitions where one spouse has, without reasonable cause, withdrawn from the society of the other." },
-  { no: "08", title: "Streedhan & Matrimonial Property", desc: "Recovery of streedhan and the resolution of matrimonial property and financial disputes." },
-  { no: "09", title: "Mediation & Settlement", desc: "Negotiated settlements and court-referred mediation to resolve matters with less conflict." },
-  { no: "10", title: "NRI Matrimonial Matters", desc: "Cross-border matrimonial issues involving non-resident spouses, jurisdiction and enforcement." },
+  { no: "08", title: "Mediation & Settlement", desc: "Negotiated settlements and court-referred mediation to resolve matters with less conflict." },
+  { no: "09", title: "NRI Matrimonial Matters", desc: "Cross-border matrimonial issues involving non-resident spouses, jurisdiction and enforcement." },
 ];
 
 export const principles = [
@@ -42,7 +41,7 @@ export const siteConfig = {
   phoneHref: "tel:+919097699097",
   whatsapp: "+91 90976 99097",
   whatsappHref: "https://wa.me/919097699097",
-  email: "advocatekaurjagdeep@gmail.com",
+  email: "jagdeep@jagdeepkaur.legal",
   address: "Office No. 11, Navrajshree CHS, Opp. McDonald's, Mira Road (East), Thane – 401107",
   mapsHref: "https://www.google.com/maps/search/?api=1&query=Navrajshree+CHS+Mira+Road+East+Thane+401107",
   hours: "By appointment · Mon–Sat"

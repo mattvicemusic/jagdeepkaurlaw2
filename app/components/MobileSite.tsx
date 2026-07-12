@@ -2,12 +2,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { faqData, practiceAreas, principles, siteConfig, steps } from "@/lib/data";
+import { useContactForm, useDisclaimer } from "@/lib/hooks";
 
 const GOLD = "#b08d3f";
 const GREEN = "#1f3a34";
 const CREAM = "#fdfcf8";
-const serif = "'Cormorant Garamond',serif";
-const sans = "'Jost',sans-serif";
+const serif = "var(--font-serif)";
+const sans = "var(--font-sans)";
 const BAR_H = 64; // fixed bottom action bar
 
 const navLinks = [
@@ -31,15 +32,10 @@ function Eyebrow({ text, center = false }: { text: string; center?: boolean }) {
 }
 
 export default function MobileSite() {
-  const [showDisclaimer, setShowDisclaimer] = useState(false);
+  const { showDisclaimer, accept } = useDisclaimer();
+  const { form, field, submit, sent } = useContactForm();
   const [openFaq, setOpenFaq] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", matter: "General enquiry", message: "" });
-  const [sent, setSent] = useState(false);
-
-  useEffect(() => {
-    try { setShowDisclaimer(localStorage.getItem("jk_disclaimer_ok") !== "1"); } catch { setShowDisclaimer(true); }
-  }, []);
 
   // lock body scroll while the menu or disclaimer is open
   useEffect(() => {
@@ -47,16 +43,6 @@ export default function MobileSite() {
     document.body.classList.toggle("jk-m-locked", lock);
     return () => document.body.classList.remove("jk-m-locked");
   }, [menuOpen, showDisclaimer]);
-
-  const accept = () => { try { localStorage.setItem("jk_disclaimer_ok", "1"); } catch {} setShowDisclaimer(false); };
-  const field = (k: keyof typeof form) => (e: any) => setForm((s) => ({ ...s, [k]: e.target.value }));
-  const submit = (e: any) => {
-    e.preventDefault();
-    const subj = encodeURIComponent("Consultation request — " + (form.matter || "Enquiry"));
-    const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nNature of matter: ${form.matter}\n\n${form.message}`);
-    window.location.href = `mailto:${siteConfig.email}?subject=${subj}&body=${body}`;
-    setSent(true);
-  };
 
   const inputStyle: React.CSSProperties = { width: "100%", padding: "15px 15px", border: "1px solid #ddd8c6", borderRadius: 6, background: "#fdfcf8", font: `400 16px ${sans}`, color: "#3a463f" };
   const sectionPad = "clamp(48px,12vw,72px) 20px";
@@ -285,12 +271,6 @@ export default function MobileSite() {
             <div style={{ padding: "16px 0", borderBottom: "1px solid #eee9dc", font: `400 15px/1.6 ${sans}` }}><strong>Chambers:</strong> <a href={siteConfig.mapsHref} target="_blank" rel="noopener noreferrer">{siteConfig.address}</a></div>
           </div>
 
-          <div style={{ marginTop: 24 }}>
-            <div className="jk-photo-frame" style={{ position: "relative", aspectRatio: "4/5", maxWidth: 340 }}>
-              <Image src="/images/chambers.png" alt="Private consultation chambers interior." fill sizes="92vw" style={{ objectFit: "cover" }} />
-            </div>
-            <p style={{ font: `400 13px/1.7 ${sans}`, color: "#66716b", margin: "12px 0 0" }}>A calm, private setting for consultations by appointment.</p>
-          </div>
         </section>
 
         {/* Footer */}
