@@ -21,15 +21,18 @@ Upload the repo root to GitHub with these top-level folders/files:
 
 ## Environment
 
-The consultation form (`app/api/contact`) sends enquiries via Resend. Set:
+The consultation form (`app/api/contact`) sends enquiries via Resend, using the
+**same setup as the portal** (domain `jagdeepkaur.legal` is already verified). Set:
 
 ```
-RESEND_API_KEY=...   # in .env.local for dev, and in the host's env for production
+EMAIL_PROVIDER_KEY=re_...              # Resend API key (same as the portal)
+EMAIL_FROM=noreply@jagdeepkaur.legal   # any address on the verified domain
+# CONTACT_TO=someone@example.com       # optional recipient override
 ```
 
-The sender is `noreply@jagdeepkaur.legal` (see `FROM` in `app/api/contact/route.ts`) —
-this domain must be verified in Resend. Enquiries are delivered to the address in
-`lib/data.ts` (`siteConfig.email`), with the enquirer's email as reply-to.
+in `.env.local` for dev and in the host's env for production. Enquiries are delivered
+to `siteConfig.email` (`lib/data.ts`) unless `CONTACT_TO` is set, with the enquirer's
+email as reply-to.
 
 ## Notes
 

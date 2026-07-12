@@ -4,8 +4,8 @@ import { siteConfig } from "@/lib/data";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Sender must be on a domain verified in Resend (jagdeepkaur.legal).
-const FROM = "Jagdeep Kaur Website <noreply@jagdeepkaur.legal>";
+// Matches the portal's Resend setup (EMAIL_PROVIDER_KEY / EMAIL_FROM) on the
+// already-verified jagdeepkaur.legal domain. Recipient overridable via CONTACT_TO.
 const MAX = { name: 120, phone: 40, email: 160, matter: 80, message: 5000, company: 100 };
 
 const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
@@ -34,10 +34,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Name and phone are required." }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.EMAIL_PROVIDER_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Email service not configured." }, { status: 500 });
   }
+  const fromAddr = process.env.EMAIL_FROM ?? "noreply@jagdeepkaur.legal";
+  const to = process.env.CONTACT_TO ?? siteConfig.email;
 
   const text = `Name: ${name}\nPhone: ${phone}\nEmail: ${email || "—"}\nNature of matter: ${matter}\n\n${message || "—"}`;
   const html = `<h2 style="font-family:Georgia,serif;color:#1f3a34">Consultation request</h2>
@@ -51,8 +53,8 @@ export async function POST(req: NextRequest) {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: FROM,
-      to: [siteConfig.email],
+      from: `Jagdeep Kaur — Website <${fromAddr}>`,
+      to: [to],
       reply_to: isEmail(email) ? email : undefined,
       subject: `Consultation request — ${matter}`,
       text,
