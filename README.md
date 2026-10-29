@@ -31,7 +31,7 @@ The Vercel project is `jagdeepkaurlaw`, connected to `mattvicemusic/jagdeepkaurl
 
 One responsive server-rendered homepage replaces the former user-agent-based desktop/mobile implementations. Native disclosure controls organise POSH scopes. Disclaimer and privacy routes are retained.
 
-There is no public complaint/enquiry form, upload endpoint or Resend contact API. Contact uses email and telephone links. The existing client portal remains a separate application and is not deployed or modified by this repository.
+There is no public complaint/enquiry form, upload endpoint or Resend contact API. Contact uses email, telephone and WhatsApp links. The existing client portal remains a separate application and is not deployed or modified by this repository.
 
 The dependency stack is Next 15.5.28 and matching React/React DOM 19.2.9. Compatible transitive overrides address the audit findings in the original Next 14 source.
 

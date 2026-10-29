@@ -98,3 +98,16 @@ test("portrait-led homepage stays coherent and accessible", async () => {
     /id="main-content"/,
   );
 });
+
+test("public enquiries use the working Gmail address and the same WhatsApp phone", async () => {
+  const data = await source("lib/data.ts");
+  const page = await source("app/page.tsx");
+  assert.match(data, /email: "advocatekaurjagdeep@gmail\.com"/);
+  assert.doesNotMatch(data, /email: "jagdeep@jagdeepkaur\.legal"/);
+  assert.match(data, /whatsappHref: "https:\/\/wa\.me\/919097699097"/);
+  assert.equal(
+    (page.match(/href=\{siteConfig\.whatsappHref\}/g) || []).length,
+    2,
+  );
+  assert.match(await source("app/privacy/page.tsx"), /WhatsApp/);
+});

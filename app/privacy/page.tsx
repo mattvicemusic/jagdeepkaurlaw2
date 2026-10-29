@@ -18,9 +18,9 @@ export default function PrivacyPage() {
     >
       <h2>Information and purposes</h2>
       <p>
-        If you contact the practice by email or telephone, information you
-        choose to provide, such as your contact details and the subject of your
-        enquiry, may be used to respond, assess whether the matter can be
+        If you contact the practice by email, telephone or WhatsApp, information
+        you choose to provide, such as your contact details and the subject of
+        your enquiry, may be used to respond, assess whether the matter can be
         considered, manage communications, and, if an engagement follows,
         administer legal work and meet professional or legal obligations. Please
         do not send case documents or sensitive information to this public site
@@ -37,15 +37,23 @@ export default function PrivacyPage() {
         form or stored acknowledgement.
       </p>
 
-      <h2>Email and service providers</h2>
+      <h2>Communication and service providers</h2>
       <p>
-        Email and telephone communications are handled through the services and
-        devices used to send or receive them. Your email provider and the
-        recipient's provider may process and retain message or connection
-        information under their own terms. Do not assume ordinary email is
-        confidential or suitable for sensitive material. The linked client
-        portal is outside the scope of this public-site notice. Review the
-        information provided there before using it.
+        Email, telephone and WhatsApp communications are handled through the
+        services and devices used to send or receive them. Your email provider
+        and the recipient's provider may process and retain message or
+        connection information under their own terms. Do not assume ordinary
+        email is confidential or suitable for sensitive material. The linked
+        client portal is outside the scope of this public-site notice. Review
+        the information provided there before using it.
+      </p>
+
+      <p>
+        If you choose WhatsApp, its provider processes communications under its
+        own terms. The website links to WhatsApp rather than embedding a chat
+        widget; opening a link does not send a message automatically. Please
+        keep initial messages general and use an agreed channel for sensitive
+        material.
       </p>
 
       <h2>Sharing, retention, and choices</h2>

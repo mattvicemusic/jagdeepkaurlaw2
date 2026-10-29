@@ -48,8 +48,14 @@ export default function HomePage() {
               <a className="home-button" href="#scope">
                 Explore the scope <Arrow />
               </a>
-              <a className="home-hero-link" href="#about">
-                Meet Jagdeep
+              <a
+                className="home-hero-link"
+                href={siteConfig.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Opens WhatsApp in a new tab"
+              >
+                WhatsApp
               </a>
             </div>
             <p className="home-location">
@@ -254,8 +260,8 @@ export default function HomePage() {
                 <br />a conversation.
               </h2>
               <p>
-                Initial professional enquiries can be made by email or
-                telephone.
+                Initial professional enquiries can be made by email, telephone
+                or WhatsApp.
               </p>
             </div>
             <div className="home-contact-details">
@@ -266,6 +272,16 @@ export default function HomePage() {
               </a>
               <a href={siteConfig.phoneHref}>
                 <span>Telephone</span>
+                <span>{siteConfig.phone}</span>
+                <Arrow diagonal />
+              </a>
+              <a
+                href={siteConfig.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Opens WhatsApp in a new tab"
+              >
+                <span>WhatsApp</span>
                 <span>{siteConfig.phone}</span>
                 <Arrow diagonal />
               </a>
