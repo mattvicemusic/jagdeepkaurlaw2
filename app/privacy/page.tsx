@@ -1,64 +1,77 @@
 import type { Metadata } from "next";
+import LegalPage from "@/app/components/LegalPage";
 import { siteConfig } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Privacy — Jagdeep Kaur, Advocate",
-  description: "Privacy notice for the website of Advocate Jagdeep Kaur.",
+  title: "Privacy notice",
+  description:
+    "How the public website and business enquiries may involve personal information.",
   alternates: { canonical: "/privacy" },
 };
 
-const h2 = { font: "600 17px/1.4 var(--font-serif)", color: "#1f3a34", margin: "26px 0 8px" } as const;
-const p = { font: "400 15px/1.75 var(--font-sans)", color: "#4a564f", margin: "0 0 14px" } as const;
-
 export default function PrivacyPage() {
   return (
-    <main style={{ background: "#fdfcf8", minHeight: "100vh" }}>
-      <div style={{ maxWidth: 720, margin: "0 auto", padding: "clamp(48px,8vw,88px) clamp(20px,5vw,40px)" }}>
-        <a href="/" style={{ font: "500 11px var(--font-sans)", letterSpacing: 1.8, textTransform: "uppercase", color: "#b08d3f", textDecoration: "none" }}>
-          ← Jagdeep Kaur, Advocate
-        </a>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "26px 0 14px" }}>
-          <span style={{ width: 30, height: 1, background: "#b08d3f" }} />
-          <span style={{ font: "500 12px var(--font-sans)", letterSpacing: 3, textTransform: "uppercase", color: "#b08d3f" }}>Privacy</span>
-        </div>
-        <h1 style={{ font: "600 clamp(28px,5vw,40px)/1.15 var(--font-serif)", color: "#1f3a34", margin: "0 0 22px" }}>
-          Privacy notice
-        </h1>
+    <LegalPage
+      eyebrow="Your information"
+      title="Privacy notice"
+      intro="This notice explains the intended handling of information when you browse this public website or make a business enquiry. The client portal is a separate service."
+    >
+      <h2>Information and purposes</h2>
+      <p>
+        If you contact the practice by email or telephone, information you
+        choose to provide, such as your contact details and the subject of your
+        enquiry, may be used to respond, assess whether the matter can be
+        considered, manage communications, and, if an engagement follows,
+        administer legal work and meet professional or legal obligations. Please
+        do not send case documents or sensitive information to this public site
+        or in an initial email. If appropriate after an engagement, a suitable
+        channel can be agreed.
+      </p>
 
-        <h2 style={h2}>What is collected</h2>
-        <p style={p}>
-          If you use the contact form on this website, the details you provide are collected: your
-          name, phone number, email address, your message, and anything else you choose to include.
-          Nothing more is gathered from the form than what you submit.
-        </p>
+      <h2>Website operations</h2>
+      <p>
+        The site does not use analytics or advertising tracking tools. Hosting
+        and delivery through Vercel may involve ordinary operational request
+        logging, such as technical information needed to run and protect the
+        service. This public website does not add a visitor account, contact
+        form or stored acknowledgement.
+      </p>
 
-        <h2 style={h2}>How it is used</h2>
-        <p style={p}>
-          Submitted details are used to respond to your enquiry, to manage subsequent
-          communications, and — where an engagement follows — for ordinary client administration.
-          They are not used for marketing lists.
-        </p>
+      <h2>Email and service providers</h2>
+      <p>
+        Email and telephone communications are handled through the services and
+        devices used to send or receive them. Your email provider and the
+        recipient's provider may process and retain message or connection
+        information under their own terms. Do not assume ordinary email is
+        confidential or suitable for sensitive material. The linked client
+        portal is outside the scope of this public-site notice. Review the
+        information provided there before using it.
+      </p>
 
-        <h2 style={h2}>No sale of personal data</h2>
-        <p style={p}>Personal information submitted through this website is not sold or traded to anyone.</p>
+      <h2>Sharing, retention, and choices</h2>
+      <p>
+        Personal information is not intended to be sold or used to build
+        marketing lists. Information may be handled by service providers
+        involved in communications or site operation and may be retained as
+        needed to respond, manage a matter, maintain appropriate practice
+        records, or meet legal obligations. Retention depends on the
+        circumstances and applicable requirements; no single fixed period
+        applies to every record.
+      </p>
+      <p>
+        You may ask to access, correct, or delete personal information by
+        contacting <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        . Requests are considered subject to identity checks, applicable legal
+        duties, recordkeeping requirements, and other valid limits.
+      </p>
 
-        <h2 style={h2}>Protection</h2>
-        <p style={p}>
-          Reasonable technical and organisational steps are taken to protect the information you
-          submit, in keeping with the confidentiality expected of a legal practice.
-        </p>
-
-        <h2 style={h2}>A note on enquiries</h2>
-        <p style={p}>
-          Submitting the form does not create a lawyer–client relationship. Please do not send
-          confidential information through the form until it is formally requested.
-        </p>
-
-        <p style={{ ...p, marginTop: 26, paddingTop: 18, borderTop: "1px solid #eee9dc", color: "#66716b", fontSize: 13 }}>
-          Questions about this notice may be sent to{" "}
-          <a href={`mailto:${siteConfig.email}`} style={{ color: "#66716b" }}>{siteConfig.email}</a>.
-        </p>
-      </div>
-    </main>
+      <h2>No relationship from contact alone</h2>
+      <p>
+        Sending an enquiry does not create a lawyer-client relationship. Please
+        share only the minimum information needed to make an initial enquiry.
+        Further information should be provided only through an agreed channel
+        after next steps are discussed.
+      </p>
+    </LegalPage>
   );
 }

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 /**
  * Kill switch only: set MAINTENANCE_MODE=1 in Vercel (+ redeploy) to take the
  * whole site down with a plain 503; remove the variable (+ redeploy) to bring
- * it back. A 503 is treated as temporary by search engines, so SEO is safe.
+ * it back. A prolonged 503 can affect indexing; use this only for temporary outages.
  */
 export function middleware() {
   if (process.env.MAINTENANCE_MODE === "1") {

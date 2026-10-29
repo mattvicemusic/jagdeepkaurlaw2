@@ -1,69 +1,73 @@
 import type { Metadata } from "next";
+import LegalPage from "@/app/components/LegalPage";
 import { siteConfig } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Disclaimer — Jagdeep Kaur, Advocate",
-  description: "Disclaimer for the website of Advocate Jagdeep Kaur.",
+  title: "Disclaimer",
+  description:
+    "General information and terms for using the website of Jagdeep Kaur, Advocate.",
   alternates: { canonical: "/disclaimer" },
 };
 
-const h2 = { font: "600 17px/1.4 var(--font-serif)", color: "#1f3a34", margin: "26px 0 8px" } as const;
-const p = { font: "400 15px/1.75 var(--font-sans)", color: "#4a564f", margin: "0 0 14px" } as const;
-
 export default function DisclaimerPage() {
   return (
-    <main style={{ background: "#fdfcf8", minHeight: "100vh" }}>
-      <div style={{ maxWidth: 720, margin: "0 auto", padding: "clamp(48px,8vw,88px) clamp(20px,5vw,40px)" }}>
-        <a href="/" style={{ font: "500 11px var(--font-sans)", letterSpacing: 1.8, textTransform: "uppercase", color: "#b08d3f", textDecoration: "none" }}>
-          ← Jagdeep Kaur, Advocate
-        </a>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "26px 0 14px" }}>
-          <span style={{ width: 30, height: 1, background: "#b08d3f" }} />
-          <span style={{ font: "500 12px var(--font-sans)", letterSpacing: 3, textTransform: "uppercase", color: "#b08d3f" }}>Disclaimer</span>
-        </div>
-        <h1 style={{ font: "600 clamp(28px,5vw,40px)/1.15 var(--font-serif)", color: "#1f3a34", margin: "0 0 22px" }}>
-          Disclaimer
-        </h1>
+    <LegalPage
+      eyebrow="Website information"
+      title="Disclaimer"
+      intro="This website offers general professional information about Jagdeep Kaur, Advocate, and her practice. It is not a substitute for advice on your circumstances."
+    >
+      <h2>General information, not legal advice</h2>
+      <p>
+        The material here is provided for general information and may not
+        reflect the latest legal developments or apply to your situation. Do not
+        act or refrain from acting on it without advice based on the relevant
+        facts and law.
+      </p>
 
-        <p style={p}>
-          As per the rules of the Bar Council of India, advocates are not permitted to solicit work
-          or advertise. This website has not been created for that purpose.
-        </p>
-        <p style={p}>
-          It is intended only to provide general information about Advocate Jagdeep Kaur, her areas
-          of practice, and her contact details, for those who seek it of their own accord.
-        </p>
+      <h2>Professional conduct and voluntary access</h2>
+      <p>
+        This site is intended to identify the advocate and provide general
+        information, not to solicit work or advertise legal services. It is made
+        available subject to the professional conduct rules applicable to
+        advocates, including Rule 36 of the Bar Council of India Rules.
+        Accessing it is voluntary. This notice does not represent or certify
+        approval by a regulatory body or a determination of compliance.
+      </p>
 
-        <h2 style={h2}>No legal advice</h2>
-        <p style={p}>
-          The contents of this website are for general information only and do not constitute legal
-          advice. The law applicable to any matter depends on its particular facts, and nothing here
-          should be acted upon without appropriate professional advice.
-        </p>
+      <h2>No engagement by browsing or enquiry</h2>
+      <p>
+        Viewing this site, contacting the office, or receiving a reply does not
+        by itself create a lawyer-client relationship. Representation or advice
+        begins only after conflicts and suitability are considered and a formal
+        engagement is agreed. No confidential or sensitive case documents should
+        be sent by ordinary email or through this public website. If a matter
+        proceeds, an appropriate channel can be agreed.
+      </p>
 
-        <h2 style={h2}>No lawyer–client relationship</h2>
-        <p style={p}>
-          Viewing this website, sending an enquiry, or communicating through it does not create a
-          lawyer–client relationship. Such a relationship arises only through a formal engagement.
-        </p>
+      <h2>POSH information and scope</h2>
+      <p>
+        Information about workplace sexual harassment and POSH support is
+        general. Employers and their Internal Committees retain the duties
+        assigned to them by law. An external member serves on an Internal
+        Committee only when eligible and properly appointed. Parties cannot
+        bring a legal practitioner to represent them in Internal or Local
+        Committee proceedings under Rule 7(6) of the POSH Rules. Specific
+        responsibilities depend on the facts and applicable requirements.
+      </p>
 
-        <h2 style={h2}>Voluntary access</h2>
-        <p style={p}>
-          Any person accessing this website does so voluntarily and of their own accord, wishing to
-          know more about the advocate for their own information and use.
-        </p>
+      <h2>No outcome guarantee</h2>
+      <p>
+        Care is taken in preparing this material, but no warranty is given that
+        it is complete, current, or suitable for a particular purpose. Legal
+        outcomes depend on their circumstances; no result is promised or
+        implied.
+      </p>
 
-        <h2 style={h2}>No warranty; outcomes vary</h2>
-        <p style={p}>
-          While care is taken to keep the information accurate, no warranty is made as to its
-          completeness or currentness. The outcome of any case depends on the facts and the law
-          applicable to that matter; past matters are no indication of future results.
-        </p>
-
-        <p style={{ ...p, marginTop: 26, paddingTop: 18, borderTop: "1px solid #eee9dc", color: "#66716b", fontSize: 13 }}>
-          Chambers of Adv. Jagdeep Kaur · {siteConfig.address} · <a href={`mailto:${siteConfig.email}`} style={{ color: "#66716b" }}>{siteConfig.email}</a>
-        </p>
-      </div>
-    </main>
+      <aside className="legal-note">
+        For existing clients, the{" "}
+        <a href={siteConfig.portalUrl}>client portal</a> is separate from this
+        public website. Please check the information and terms provided there.
+      </aside>
+    </LegalPage>
   );
 }

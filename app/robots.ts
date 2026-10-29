@@ -1,10 +1,13 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://jagdeepkaur.legal";
+import { siteConfig } from "@/lib/data";
+import { isPreviewDeployment } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
+  // Crawlers must be able to fetch preview pages to see their noindex directive.
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    ...(isPreviewDeployment()
+      ? {}
+      : { sitemap: siteConfig.siteUrl + "/sitemap.xml" }),
   };
 }
