@@ -1,4 +1,6 @@
 import "./globals.css";
+import "./components/whatsapp.css";
+import { FloatingWhatsAppButton } from "./components/FloatingWhatsAppButton";
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Serif, IBM_Plex_Sans } from "next/font/google";
 import { siteConfig } from "@/lib/data";
@@ -82,6 +84,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <FloatingWhatsAppButton />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

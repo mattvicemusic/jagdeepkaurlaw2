@@ -105,9 +105,31 @@ test("public enquiries use the working Gmail address and the same WhatsApp phone
   assert.match(data, /email: "advocatekaurjagdeep@gmail\.com"/);
   assert.doesNotMatch(data, /email: "jagdeep@jagdeepkaur\.legal"/);
   assert.match(data, /whatsappHref: "https:\/\/wa\.me\/919097699097"/);
-  assert.equal(
-    (page.match(/href=\{siteConfig\.whatsappHref\}/g) || []).length,
-    2,
-  );
+  assert.equal((page.match(/<WhatsAppButton[ />]/g) || []).length, 2);
   assert.match(await source("app/privacy/page.tsx"), /WhatsApp/);
+});
+
+test("WhatsApp is a branded accessible button, available throughout the site", async () => {
+  const button = await source("app/components/WhatsAppButton.tsx");
+  const css = await source("app/components/whatsapp.css");
+  assert.match(button, /href=\{siteConfig\.whatsappHref\}/);
+  assert.match(button, /Chat on WhatsApp/);
+  assert.match(button, /aria-label=/);
+  assert.match(button, /noopener noreferrer/);
+  assert.match(button, /<svg/);
+  assert.match(button, /aria-hidden="true"/);
+  assert.match(await source("app/layout.tsx"), /<FloatingWhatsAppButton/);
+  assert.match(css, /position: fixed/);
+  assert.match(css, /safe-area-inset-bottom/);
+  assert.match(css, /focus-visible/);
+  assert.match(css, /prefers-reduced-motion/);
+  assert.doesNotMatch(button, /iframe|setInterval|useEffect|fetch\(/);
+});
+
+test("the floating button yields to visible in-page WhatsApp controls", async () => {
+  const floating = await source("app/components/FloatingWhatsAppButton.tsx");
+  assert.match(floating, /IntersectionObserver/);
+  assert.match(floating, /hidden=\{inlineVisible\}/);
+  assert.match(floating, /observer\.disconnect/);
+  assert.match(floating, /usePathname/);
 });

@@ -1,6 +1,7 @@
 import "./home.css";
 import Image from "next/image";
 import Link from "next/link";
+import { WhatsAppButton } from "@/app/components/WhatsAppButton";
 import { Arrow } from "@/app/components/Arrow";
 import { SiteFooter } from "@/app/components/SiteFooter";
 import { siteConfig, supportAreas } from "@/lib/data";
@@ -48,15 +49,7 @@ export default function HomePage() {
               <a className="home-button" href="#scope">
                 Explore the scope <Arrow />
               </a>
-              <a
-                className="home-hero-link"
-                href={siteConfig.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Opens WhatsApp in a new tab"
-              >
-                WhatsApp
-              </a>
+              <WhatsAppButton compact />
             </div>
             <p className="home-location">
               {siteConfig.location}
@@ -275,16 +268,9 @@ export default function HomePage() {
                 <span>{siteConfig.phone}</span>
                 <Arrow diagonal />
               </a>
-              <a
-                href={siteConfig.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Opens WhatsApp in a new tab"
-              >
-                <span>WhatsApp</span>
-                <span>{siteConfig.phone}</span>
-                <Arrow diagonal />
-              </a>
+              <div className="home-whatsapp-contact">
+                <WhatsAppButton />
+              </div>
               <p className="home-contact-hours">{siteConfig.hours}</p>
               <p className="home-contact-caution">
                 Please keep your first message general. Do not send complaint
